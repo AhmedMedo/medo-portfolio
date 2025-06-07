@@ -1,5 +1,6 @@
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import cvUrl from '../assets/Ahmed_Alaa_Resume.pdf';
+import myPhoto from '../assets/medo.png';
 
 const Hero = () => {
   return (
@@ -17,7 +18,7 @@ const Hero = () => {
           <div className="relative mx-auto w-32 h-32 mb-8">
             <div className="w-full h-full rounded-full bg-gradient-to-r from-blue-600 to-purple-600 p-1">
               <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-4xl font-bold text-gray-600">
-                AA
+                <img src={myPhoto} alt="Ahmed Alaa" className="w-full h-full object-cover rounded-full" />
               </div>
             </div>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-20 animate-ping"></div>
