@@ -60,14 +60,14 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "ahmed.alaa@example.com",
-      link: "mailto:ahmed.alaa@example.com"
+      value: "ahmed.alaa.eldin.hamdy@gmail.com",
+      link: "mailto:ahmed.alaa.eldin.hamdy@gmail.com"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      value: "+20 123 456 7890",
-      link: "tel:+201234567890"
+      value: "+201021194536",
+      link: "tel:+201021194536"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -81,17 +81,17 @@ const Contact = () => {
     {
       icon: <Github className="w-5 h-5" />,
       name: "GitHub",
-      url: "#"
+      url: "https://github.com/AhmedMedo"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       name: "LinkedIn",
-      url: "#"
+      url: "https://www.linkedin.com/in/ahmedalaa100/"
     },
     {
       icon: <Twitter className="w-5 h-5" />,
       name: "Twitter",
-      url: "#"
+      url: "https://x.com/AhmedAlaa707"
     }
   ];
 

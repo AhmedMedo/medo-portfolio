@@ -49,19 +49,19 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Connect</h4>
             <div className="flex justify-center md:justify-end gap-4">
               <a 
-                href="#" 
+                href="https://github.com/AhmedMedo"
                 className="bg-gray-800 p-3 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-110"
               >
                 <Github size={20} />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/in/ahmedalaa100"
                 className="bg-gray-800 p-3 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-110"
               >
                 <Linkedin size={20} />
               </a>
               <a 
-                href="#" 
+                href="mailto:ahmed.alaa.eldin.hamdy@gmail.com"
                 className="bg-gray-800 p-3 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-110"
               >
                 <Mail size={20} />
