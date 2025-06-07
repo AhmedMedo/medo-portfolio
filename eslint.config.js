@@ -4,11 +4,16 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import parser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import unusedImportsPlugin from 'eslint-plugin-unused-imports';
+import prettier from 'eslint-config-prettier';
 
 export default [
+    js.configs.recommended,
+
     {
         ignores: ['dist', 'node_modules'],
     },
+
     {
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
@@ -16,7 +21,6 @@ export default [
             parserOptions: {
                 ecmaVersion: 2020,
                 sourceType: 'module',
-                // project: './tsconfig.json',
             },
             globals: globals.browser,
         },
@@ -24,6 +28,7 @@ export default [
             '@typescript-eslint': tsPlugin,
             'react-hooks': reactHooks,
             'react-refresh': reactRefresh,
+            'unused-imports': unusedImportsPlugin,
         },
         rules: {
             ...tsPlugin.configs.recommended.rules,
@@ -32,6 +37,15 @@ export default [
                 'warn',
                 { allowConstantExport: true },
             ],
+            'unused-imports/no-unused-imports': 'warn',
+            'unused-imports/no-unused-vars': ['warn', {
+                vars: 'all',
+                varsIgnorePattern: '^_',
+                args: 'after-used',
+                argsIgnorePattern: '^_'
+            }],
         },
     },
+
+    prettier
 ];
