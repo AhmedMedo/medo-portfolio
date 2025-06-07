@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
@@ -48,6 +48,18 @@ const Newsletter = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: '#fff',
+            color: '#374151',
+            border: '1px solid #e5e7eb',
+            borderRadius: '0.5rem',
+            fontSize: '14px',
+          },
+        }}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12">
           <div className="flex justify-center mb-6">
