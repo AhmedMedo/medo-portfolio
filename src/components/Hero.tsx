@@ -1,5 +1,5 @@
-import React from 'react';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
+import cvUrl from '../assets/Ahmed_Alaa_Resume.pdf';
 
 const Hero = () => {
   return (
@@ -37,10 +37,10 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
-              <Download size={20} />
+            <a href={cvUrl} className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+              <Download  size={20} />
               Download Resume
-            </button>
+            </a>
             <button 
               onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="border-2 border-gray-800 text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-800 hover:text-white transform hover:scale-105 transition-all duration-300"
