@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import toast, { Toaster } from 'react-hot-toast';
+import React, { useState } from "react";
+import { Mail, Send, CheckCircle, AlertCircle } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+import { trackEvent } from "../utils/analytics";
 
 const Newsletter = () => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -12,10 +13,10 @@ const Newsletter = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/newsletter', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/api/newsletter", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, name }),
       });
@@ -27,20 +28,24 @@ const Newsletter = () => {
           duration: 5000,
           icon: <CheckCircle className="w-5 h-5" />,
         });
-        setEmail('');
-        setName('');
+        trackEvent("newsletter_subscribe");
+        setEmail("");
+        setName("");
       } else {
-        toast.error(result.message || 'Failed to subscribe', {
+        toast.error(result.message || "Failed to subscribe", {
           duration: 5000,
           icon: <AlertCircle className="w-5 h-5" />,
         });
       }
     } catch (error) {
-      console.error('Newsletter subscription error:', error);
-      toast.error('Network error. Please check your connection and try again.', {
-        duration: 5000,
-        icon: <AlertCircle className="w-5 h-5" />,
-      });
+      console.error("Newsletter subscription error:", error);
+      toast.error(
+        "Network error. Please check your connection and try again.",
+        {
+          duration: 5000,
+          icon: <AlertCircle className="w-5 h-5" />,
+        },
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -52,11 +57,11 @@ const Newsletter = () => {
         position="top-right"
         toastOptions={{
           style: {
-            background: '#fff',
-            color: '#374151',
-            border: '1px solid #e5e7eb',
-            borderRadius: '0.5rem',
-            fontSize: '14px',
+            background: "#fff",
+            color: "#374151",
+            border: "1px solid #e5e7eb",
+            borderRadius: "0.5rem",
+            fontSize: "14px",
           },
         }}
       />
@@ -67,12 +72,13 @@ const Newsletter = () => {
               <Mail className="w-8 h-8 text-white" />
             </div>
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Stay Updated
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Subscribe to my newsletter and get the latest updates on my projects, tech insights, and career journey.
+            Subscribe to my newsletter and get the latest updates on my
+            projects, tech insights, and career journey.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">

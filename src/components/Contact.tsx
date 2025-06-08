@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
-import toast, { Toaster } from 'react-hot-toast';
+import React, { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+import { trackEvent } from "../utils/analytics";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -23,10 +36,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -38,19 +51,23 @@ const Contact = () => {
           duration: 5000,
           icon: <CheckCircle className="w-5 h-5" />,
         });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        trackEvent("contact_form_submit");
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        toast.error(result.message || 'Failed to send message', {
+        toast.error(result.message || "Failed to send message", {
           duration: 5000,
           icon: <AlertCircle className="w-5 h-5" />,
         });
       }
     } catch (error) {
-      console.error('Contact form error:', error);
-      toast.error('Network error. Please check your connection and try again.', {
-        duration: 5000,
-        icon: <AlertCircle className="w-5 h-5" />,
-      });
+      console.error("Contact form error:", error);
+      toast.error(
+        "Network error. Please check your connection and try again.",
+        {
+          duration: 5000,
+          icon: <AlertCircle className="w-5 h-5" />,
+        },
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -61,62 +78,66 @@ const Contact = () => {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
       value: "ahmed.alaa.eldin.hamdy@gmail.com",
-      link: "mailto:ahmed.alaa.eldin.hamdy@gmail.com"
+      link: "mailto:ahmed.alaa.eldin.hamdy@gmail.com",
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
       value: "+201021194536",
-      link: "tel:+201021194536"
+      link: "tel:+201021194536",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Location",
       value: "Cairo, Egypt",
-      link: "#"
-    }
+      link: "#",
+    },
   ];
 
   const socialLinks = [
     {
       icon: <Github className="w-5 h-5" />,
       name: "GitHub",
-      url: "https://github.com/AhmedMedo"
+      url: "https://github.com/AhmedMedo",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       name: "LinkedIn",
-      url: "https://www.linkedin.com/in/ahmedalaa100/"
+      url: "https://www.linkedin.com/in/ahmedalaa100/",
     },
     {
       icon: <Twitter className="w-5 h-5" />,
       name: "Twitter",
-      url: "https://x.com/AhmedAlaa707"
-    }
+      url: "https://x.com/AhmedAlaa707",
+    },
   ];
 
   return (
     <section id="contact" className="py-20 bg-white">
-      <Toaster 
+      <Toaster
         position="top-right"
         toastOptions={{
           style: {
-            background: '#fff',
-            color: '#374151',
-            border: '1px solid #e5e7eb',
-            borderRadius: '0.5rem',
-            fontSize: '14px',
+            background: "#fff",
+            color: "#374151",
+            border: "1px solid #e5e7eb",
+            borderRadius: "0.5rem",
+            fontSize: "14px",
           },
         }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Get In <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Touch</span>
+            Get In{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Touch
+            </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!
+            I'm always interested in new opportunities and exciting projects.
+            Let's discuss how we can work together!
           </p>
         </div>
 
@@ -125,10 +146,10 @@ const Contact = () => {
           <div className="lg:col-span-1">
             <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
               <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
-              
+
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <a 
+                  <a
                     key={index}
                     href={info.link}
                     className="flex items-start gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-300 group"
@@ -150,7 +171,7 @@ const Contact = () => {
                 <h4 className="font-semibold mb-4">Follow Me</h4>
                 <div className="flex gap-4">
                   {socialLinks.map((social, index) => (
-                    <a 
+                    <a
                       key={index}
                       href={social.url}
                       className="bg-white/10 p-3 rounded-lg hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
@@ -169,7 +190,10 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Full Name
                   </label>
                   <input
@@ -185,7 +209,10 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Email Address
                   </label>
                   <input
@@ -203,7 +230,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Subject
                 </label>
                 <input
@@ -220,7 +250,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Message
                 </label>
                 <textarea
