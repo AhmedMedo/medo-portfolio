@@ -2,7 +2,7 @@
   "name": "elegant-portfolio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://AhmedMedo.github.io/medo-portfolio",
+  "homepage": "https://ahmedmedo.online",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
